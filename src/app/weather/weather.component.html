@@ -1,0 +1,10 @@
+<h1>CAV Weather App</h1>
+<h2>Your city, your forecasts now</h2>
+<h3>Current Forecast</h3>
+<input [(ngModel)]="city">
+<button (click)="getInfo()">search</button>
+<div *ngIf="this.temp">
+    {{this.temp}}°C {{this.name}} 
+    {{this.country}} {{this.data | date: 'd MMMM y'}} {{this.description}}
+    <img src="http://openweathermap.org/img/wn/{{this.icon}}@2x.png" alt="icon" style="width: 3rem;">
+</div>
