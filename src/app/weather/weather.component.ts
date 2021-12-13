@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherServiceService } from '../service/weather-service.service';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-weather',
@@ -22,15 +23,32 @@ export class WeatherComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  // getInfo(){
+  //   this.weather.getWeatherInfo(this.city).subscribe(response => {
+  //     this.temp = Math.round(response.main.temp),
+  //     this.name = response.name,
+  //     this.country = response.sys.country,
+  //     this.description = response.weather[0].description,
+  //     this.icon = response.weather[0].icon,
+  //     console.log(response)
+  //   })
+  //   this.data = new Date;
+  // }
+
+
   getInfo(){
-    this.weather.getWeatherInfo(this.city).subscribe(response => {
-      this.temp = Math.round(response.main.temp),
-      this.name = response.name,
-      this.country = response.sys.country,
-      this.description = response.weather[0].description,
-      this.icon = response.weather[0].icon,
-      console.log(response)
-    })
+    this.weather.getWeatherInfo(this.city)
+    .pipe(
+      map(response => {
+        this.temp = Math.round(response.main.temp),
+            this.name = response.name,
+            this.country = response.sys.country,
+            this.description = response.weather[0].description,
+            this.icon = response.weather[0].icon,
+            console.log(response)
+          })
+    )
+    .subscribe(response => response)
     this.data = new Date;
   }
 

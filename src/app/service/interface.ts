@@ -11,3 +11,12 @@ export interface IAppWeather {
         icon: string;
     }]
 }
+
+
+export interface IMappWeather {
+        temp: number;
+        name: string;
+        country:string;
+        description: string;
+        icon: string;
+}
